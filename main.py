@@ -3,37 +3,6 @@ from flask import Flask, request
 # Criar o objeto Flask app:
 app = Flask(__name__)
 
-# http://127.0.0.1:5000/temperatura?celsius=60
-@app.route('/temperatura')
-def temperatura_query_string_1_agurmentos_vetor():
-    celsius = request.args['celsius']
-
-    fahrenheit = (int(celsius) * 1.8) + 32
-    resp = str(fahrenheit)
-
-    return '''<h1>Temperatura em Fahrenheit: {}</h1>'''.format(resp)
-
-
-# http://127.0.0.1:5000/aprovacao?nota1=2&nota2=3&nota3=100
-@app.route('/aprovacao')
-def aprovacao_query_string_3_agurmentos_vetor():
-    nota1 = request.args['nota1']
-    nota2 = request.args['nota2']
-    nota3 = request.args['nota3']
-
-    media = (int(nota1) + int(nota2) + int(nota3)) / 3
-
-    if media < 3:
-        resp = 'Reprovado'
-    elif media < 6:
-        resp = 'Recuperacao'
-    else:
-        resp = 'Aprovado'
-
-    return '''<h1>Média: {}</h1>'''.format(resp)
-
-
-
 @app.route('/valor', methods=['GET', 'POST'])
 def maior_menor_media():
     # Trata a requisição com método POST:
